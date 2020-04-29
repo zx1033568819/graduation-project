@@ -1,0 +1,22 @@
+/* 全局样式表 */
+html,
+body,
+#app{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.el-container{
+  height: 100%;
+}
+.el-header{
+  background-color: #e6a23c;
+  text-align: center;
+  line-height: 60px;
+}
+.el-main {
+  background-color: #FDF6EC;
+  color: #333;
+  text-align: center;
+  line-height: 100%;
+}

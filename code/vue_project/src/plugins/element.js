@@ -1,4 +1,32 @@
 import Vue from 'vue'
-import { Button } from 'element-ui'
+import { Button, Form, FormItem, Input, DatePicker, Radio, Container, Header, Main, Aside, Menu, MenuItem, Carousel, CarouselItem, Row, Col, Link, Divider, Card, Select, Option, Upload, Dialog, TabPane, Tabs, Table, TableColumn, Popover, Message } from 'element-ui'
 
 Vue.use(Button)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Input)
+Vue.use(DatePicker)
+Vue.use(Radio)
+Vue.use(Container)
+Vue.use(Header)
+Vue.use(Main)
+Vue.use(Aside)
+Vue.use(Menu)
+Vue.use(MenuItem)
+Vue.use(Carousel)
+Vue.use(CarouselItem)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Link)
+Vue.use(Divider)
+Vue.use(Card)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Upload)
+Vue.use(Dialog)
+Vue.use(TabPane)
+Vue.use(Tabs)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Popover)
+Vue.prototype.$message = Message
