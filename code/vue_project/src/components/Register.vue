@@ -67,13 +67,13 @@ export default {
     }
     return {
       registerForm: {
-        user_name: 'lolili',
-        sex: '女',
-        user_password: 'lolili123456',
-        checkPass: 'lolili123456',
-        user_birth: '1997-03-09',
-        cell_number: '13254668912',
-        email: 'lolili@163.com'
+        user_name: '',
+        sex: '',
+        user_password: 'l',
+        checkPass: '',
+        user_birth: '',
+        cell_number: '',
+        email: ''
       },
       registerRules: {
         user_name: [
@@ -97,21 +97,21 @@ export default {
     }
   },
   methods: {
-    submitForm (formName) {
+    submitForm (registerForm) {
       this.$refs.registerRef.validate(async valid => {
         if (!valid) return
         await this.$http.post('loginRouter/register', this.registerForm).then(res => {
           if (res.status === 200) {
             this.$message.success('注册成功')
-            this.$router.push({ path: '/index' })
+            this.$router.push({ path: '/Login' })
           }
         }).catch(err => {
           if (err.status !== 200) { return this.$message.error('注册失败') }
         })
       })
     },
-    resetForm (formName) {
-      this.$refs[formName].resetFields()
+    resetForm (registerForm) {
+      this.$refs[registerForm].resetFields()
     }
   }
 }

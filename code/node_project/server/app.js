@@ -3,19 +3,21 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-//引入session模块
-let session = require('express-session');
+
 //引入上传模块
 let multer = require('multer');
 //配置上传对象
 let upload = multer({dest:"./public/upload"});
 //配置跨域
 var cors=require('cors');
+//配置taken
+var JWT = require('express-jwt');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/apiRouter');
 var loginRouter = require('./routes/loginRouter');
+var adminLoginRouter = require('./routes/adminLoginRouter');
 
 var app = express();
 
@@ -35,15 +37,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//配置session
-app.use(session({
-  secret: "xzsagjasoigjasoi",
-  resave: true,//强制保存session
-  cookie: {
-    maxAge: 7*24*60*1000,//最长保存时间
-  },
-  saveUninitialized: true//是否保存初始化session
-}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -51,6 +44,14 @@ app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 //登录注册
 app.use('/loginRouter', loginRouter);
+//管理员登录注册
+app.use('/adminLoginRouter', adminLoginRouter);
+//jwt配置
+app.use(JWT({
+  secret:'secret12345'
+}).unless({
+  path:['/loginRouter','adminLoginRouter']
+}));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

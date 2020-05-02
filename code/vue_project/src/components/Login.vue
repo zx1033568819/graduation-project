@@ -60,7 +60,7 @@ export default {
         await this.$http.post('loginRouter/login', this.loginForm).then(res => {
           if (res.status === 200) {
             this.$message.success('登陆成功')
-            window.sessionStorage.setItem('token', res.token)
+            window.sessionStorage.setItem('token', res.data.token)
             this.$router.push({ path: '/index' })
           }
         }).catch(err => {

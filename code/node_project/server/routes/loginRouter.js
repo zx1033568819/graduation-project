@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var sqlQuery = require('../DBconfig');
+//配置token
+var jwt = require('jsonwebtoken');
 
 /* GET users listing. */
 router.get('/login', function(req, res, next) {
@@ -44,8 +46,19 @@ router.post('/login', async(req,res)=>{
     res.status(400);
     res.send('登录失败');
   }else{
-    res.status(200);
-    res.send('登录成功');
+    let token = jwt.sign(
+    {
+      username: username
+    },
+    'secret12345',
+    {
+      expiresIn: 3600 * 24 * 3
+    });
+    var data = {
+      "message": "登录成功",
+      "token": token
+    };
+    res.status(200).send(data);
   }
 })
 module.exports = router;

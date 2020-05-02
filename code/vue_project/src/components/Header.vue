@@ -2,7 +2,8 @@
   <el-header class="all_header">
     <div class="left_header">
       <h3>闲置物品交易系统</h3>
-      <a href="#" class="user el-icon-user-solid">admin</a>
+      <a href="#" class="link el-icon-user-solid">admin</a>
+      <a href="#" class="link" @click="logout">退出登录</a>
     </div>
     <el-menu
       :default-active="activeIndex"
@@ -36,6 +37,10 @@ export default {
     },
     personal_page () {
       this.$router.push({ path: '/personal' })
+    },
+    logout () {
+      window.sessionStorage.clear()
+      this.$router.push('/login')
     }
   }
 }
@@ -50,13 +55,13 @@ export default {
   display: inline-block;
   color: #4a4a4a;
 }
-.user {
+.link {
   color: #4a4a4a;
   margin: 0 20px;
   font-size: 15px;
   text-decoration: none;
 }
-.user:hover {
+.link:hover {
   color: #4a4a4a;
   text-decoration: underline;
 }
